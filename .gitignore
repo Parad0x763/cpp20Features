@@ -1,0 +1,9 @@
+**/bin
+**/build
+**/.cache
+
+**/CMakeUserPresets.json
+**/CMakeCache.txt
+
+**/.zed
+**/.vscode
