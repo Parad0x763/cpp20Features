@@ -49,4 +49,18 @@
 #### Calendar
 
 - Adds many classes for getting expected calendar dates / functionality
-- 
+
+### Aggregate Initialization
+
+- In general, an **Aggregate** is any type that can contain multiple data members
+- An **Aggregate** in C++ is more narrowly defined here: [Aggregate](https://en.cppreference.com/w/cpp/language/aggregate_initialization.html)
+- C++20 added **Designated Initializers** which, allows you to explicitly define values
+- For example:
+```
+  struct User {
+    int id {};
+    std::string name {};
+  }
+  ....
+  User user { .id = 1, .name = "name" };
+```

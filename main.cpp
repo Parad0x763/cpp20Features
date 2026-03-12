@@ -1,6 +1,7 @@
 #include <format>
 #include <iostream>
 #include <chrono>
+#include <ostream>
 
 /* 
  * The following `max` function is intended to determine the max value between to different types
@@ -38,6 +39,26 @@ std::string getCurrentDateAndTime() {
 std::string getCurrentDateAndTime20() {
     auto const time = std::chrono::current_zone()->to_local( std::chrono::system_clock::now() );
     return std::format( "{:%Y-%m-%d %X}", time );
+}
+
+/*
+ * struct to demonstrate Aggregate Initialization
+ */
+struct Game {
+    int id {};
+    std::string name {};
+    std::string genre {};
+    int rating {};
+};
+
+std::ostream& operator<<( std::ostream& out, const Game& g ) {
+    out 
+        << "ID: " << g.id
+        << "\nName: " << g.name
+        << "\nGenre: " << g.genre
+        << "\nRating: " << g.rating
+        << std::endl;
+    return out;
 }
 
 int main () {
@@ -82,5 +103,27 @@ int main () {
         << "\nmaxPrior: " << maxPrior( tValue, uValue )
         << std::endl;
 
+    Game metalGearSolid3 {
+        .id = 1,
+        .name = "Metal Gear Solid 3: Snake Eater",
+        .genre = "RPG",
+        .rating = 91
+    };
+
+    Game unknown {
+        .id = 2,
+    };
+
+    std::cout << metalGearSolid3 << unknown;
+    /*
+        ID: 1
+        Name: Metal Gear Solid 3: Snake Eater
+        Genre: RPG
+        Rating: 91
+        ID: 2
+        Name:
+        Genre:
+        Rating: 0 
+     */
     return 0;
 }
